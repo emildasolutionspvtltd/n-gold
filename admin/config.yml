@@ -1,0 +1,1476 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: Benefits, key: 685742dc'
+            label: Text
+            name: 685742dc
+            widget: string
+          - hint: 'Original text: Features, key: -d78b7a3'
+            label: Text
+            name: '-d78b7a3'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: 'Original text: FAQs, key: 20d03d'
+            label: Text
+            name: 20d03d
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: Download APP, key: 4bce2289'
+            label: Text
+            name: 4bce2289
+            widget: string
+          - hint: >-
+              Original text: Investing in Your Future Welcome to NGOLD, the
+              Smart Gold Investment, key: -37607606
+            label: Text
+            name: '-37607606'
+            widget: string
+          - hint: >-
+              Original text: Elevate your savings with the Gold Chit App – where
+              traditional gold chits meet smart, user-friendly technology.
+              Secure your financial future today, key: -15142c78
+            label: Text
+            name: '-15142c78'
+            widget: text
+          - hint: 'Original text: Download the NGOLD App, key: 41f98e28'
+            label: Text
+            name: 41f98e28
+            widget: string
+          - hint: >-
+              Original text: Unlock the Power of ngold: Your Path to Financial
+              Freedom, key: -179e8ee7
+            label: Text
+            name: '-179e8ee7'
+            widget: string
+          - hint: >-
+              Original text: Discover the Benefits of Choosing ngold for Your
+              Smart Gold Investments, key: -3f4acda6
+            label: Text
+            name: '-3f4acda6'
+            widget: string
+          - hint: 'Original text: Smart Savings, High Returns, key: 2ffbeddb'
+            label: Text
+            name: 2ffbeddb
+            widget: string
+          - hint: >-
+              Original text: Maximize your savings while investing in gold
+              chits. Enjoy the potential for impressive returns on your
+              investment, all while securing your wealth in the enduring value
+              of gold., key: -4cdb61e8
+            label: Text
+            name: '-4cdb61e8'
+            widget: text
+          - hint: 'Original text: Easy Chit Management, key: 3b1e0e15'
+            label: Text
+            name: 3b1e0e15
+            widget: string
+          - hint: >-
+              Original text: Our intuitive app simplifies the management of your
+              gold chits. Keep track of your investments, payments, and rewards
+              effortlessly, putting you in control of your financial journey.,
+              key: b67873d
+            label: Text
+            name: b67873d
+            widget: text
+          - hint: 'Original text: Earn as You Invite, key: 186a4cf0'
+            label: Text
+            name: 186a4cf0
+            widget: string
+          - hint: >-
+              Original text: Unlock extra rewards by inviting friends to join.
+              With our referral program, both you and your friends benefit from
+              additional earnings, enhancing your savings as you share the app.,
+              key: 1c46afab
+            label: Text
+            name: 1c46afab
+            widget: text
+          - hint: 'Original text: Future-Proofed Investments, key: -72a60ae7'
+            label: Text
+            name: '-72a60ae7'
+            widget: string
+          - hint: >-
+              Original text: Embrace a modern take on the age-old tradition of
+              gold investments. The Gold Chit App combines the reliability of
+              gold with the convenience, ensuring a secure and forward-looking
+              financial strategy., key: 2a53241
+            label: Text
+            name: 2a53241
+            widget: text
+          - hint: 'Original text: Smart Installment Plans, key: 6f4aa60c'
+            label: Text
+            name: 6f4aa60c
+            widget: string
+          - hint: >-
+              Original text: Experience the ease of investing in gold like never
+              before with ngold’s smart installment plans. Our platform allows
+              you to purchase gold coins conveniently by spreading your payments
+              over 11 months. This unique approach makes gold investment
+              accessible to everyone, ensuring that you can secure your
+              financial future without straining your budget. Embrace the power
+              of disciplined savings and watch your wealth grow., key: 6cd504a0
+            label: Text
+            name: 6cd504a0
+            widget: text
+          - hint: 'Original text: Referral Rewards, key: 44f89da1'
+            label: Text
+            name: 44f89da1
+            widget: string
+          - hint: >-
+              Original text: Unlock a world of potential with ngold’s referral
+              rewards feature. Invite friends, family, and acquaintances to join
+              the ngold community and earn rewards in the form of gold coins. As
+              you expand your network of investors, you’ll accumulate even more
+              valuable assets. Sharing the benefits of ngold not only helps you
+              grow your savings but also empowers your loved ones to invest
+              wisely and secure their financial journeys, key: -1e4f830f
+            label: Text
+            name: '-1e4f830f'
+            widget: text
+          - hint: 'Original text: Get in Touch with Us, key: -731117ba'
+            label: Text
+            name: '-731117ba'
+            widget: string
+          - hint: >-
+              Original text: Got questions or feedback? Reach out to our
+              friendly support team. We’re here to assist you on your journey to
+              smart gold investments., key: 3bf6a948
+            label: Text
+            name: 3bf6a948
+            widget: text
+          - hint: 'Original text: +91 944244 9431 , key: -732e02c3'
+            label: Text
+            name: '-732e02c3'
+            widget: string
+          - hint: 'Original text: +91 944244 9431, key: 469b6b43'
+            label: Text
+            name: 469b6b43
+            widget: string
+          - hint: 'Original text: info@ngold.in , key: 149ae69'
+            label: Text
+            name: 149ae69
+            widget: string
+          - hint: 'Original text: support@ngold.in, key: -5aa8416a'
+            label: Text
+            name: '-5aa8416a'
+            widget: string
+          - hint: >-
+              Original text: Kamaraj Nagar, 10th Chinna Elsagire, Hosur 635 126,
+              TN, India, key: -73c1c763
+            label: Text
+            name: '-73c1c763'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: What is ngold and how does it work?, key: -58a50605'
+            label: Text
+            name: '-58a50605'
+            widget: string
+          - hint: >-
+              Original text: NGOLD is a digital platform that modernizes
+              traditional gold chit funds, allowing users to invest in gold
+              through monthly contributions. Your purchased gold is securely
+              stored and can be monitored anytime via our user-friendly app.,
+              key: -6630c31e
+            label: Text
+            name: '-6630c31e'
+            widget: text
+          - hint: 'Original text: Is my investment secure with ngold?, key: -6a4a5b4f'
+            label: Text
+            name: '-6a4a5b4f'
+            widget: string
+          - hint: >-
+              Original text: Your investment with NGOLD is secured in a vault
+              and backed by cutting-edge technology to ensure the highest levels
+              of security and compliance with financial regulations. We
+              prioritize transparency and customer trust in all our operations.,
+              key: 528544b3
+            label: Text
+            name: 528544b3
+            widget: text
+          - hint: 'Original text: How does the referral program work?, key: 6f67f615'
+            label: Text
+            name: 6f67f615
+            widget: string
+          - hint: >-
+              Original text: Our referral program rewards you for bringing new
+              investors to NGOLD; simply share your unique referral code and
+              earn a commission or discount on your next investment when someone
+              signs up and invests using your code. The more people you refer,
+              the more you earn., key: 57e7e487
+            label: Text
+            name: 57e7e487
+            widget: text
+          - hint: >-
+              Original text: Can I track my installment payments?, key:
+              -384aa44d
+            label: Text
+            name: '-384aa44d'
+            widget: string
+          - hint: >-
+              Original text: Yes, you can easily track your installment payments
+              through our secure, user-friendly app, which provides real-time
+              updates and a complete payment history for your convenience. This
+              ensures full transparency in your investment journey with NGOLD.,
+              key: 2ec7b831
+            label: Text
+            name: 2ec7b831
+            widget: text
+          - hint: 'Original text: ©Ngold, key: 24deaaa5'
+            label: Text
+            name: 24deaaa5
+            widget: string
+          - hint: 'Original text: Terms&Conditions, key: 68112bb7'
+            label: Text
+            name: 68112bb7
+            widget: string
+          - hint: 'Original text: Policy, key: -712d6eae'
+            label: Text
+            name: '-712d6eae'
+            widget: string
+          - hint: 'Original text: Designed & Developed by , key: 8fbba88'
+            label: Text
+            name: 8fbba88
+            widget: string
+          - hint: 'Original text: Emilda Solutions, key: -7c9b8a7e'
+            label: Text
+            name: '-7c9b8a7e'
+            widget: string
+          - hint: 'Original text: Terms & Conditions, key: 4f912d2b'
+            label: Text
+            name: 4f912d2b
+            widget: string
+          - hint: 'Original text: Welcome to , key: 63190f27'
+            label: Text
+            name: 63190f27
+            widget: string
+          - hint: 'Original text: www.ngold.in!, key: -434b2c1b'
+            label: Text
+            name: '-434b2c1b'
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: >-
+              Original text: These terms and conditions outline the rules and
+              regulations for the use of N Gold's Website, located at , key:
+              -3ded7bd9
+            label: Text
+            name: '-3ded7bd9'
+            widget: text
+          - hint: 'Original text: https://n-gold.in/, key: -50db5c56'
+            label: Text
+            name: '-50db5c56'
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: >-
+              Original text: By accessing this website we assume you accept
+              these terms and conditions. Do not continue to use www.ngold.in if
+              you do not agree to take all of the terms and conditions stated on
+              this page., key: 1509e2a3
+            label: Text
+            name: 1509e2a3
+            widget: text
+          - hint: >-
+              Original text: The following terminology applies to these Terms
+              and Conditions, Privacy Statement and Disclaimer Notice and all
+              Agreements: "Client", "You" and "Your" refers to you, the person
+              log on this website and compliant to the Company's terms and
+              conditions. "The Company", "Ourselves", "We", "Our" and "Us",
+              refers to our Company. "Party", "Parties", or "Us", refers to both
+              the Client and ourselves. All terms refer to the offer, acceptance
+              and consideration of payment necessary to undertake the process of
+              our assistance to the Client in the most appropriate manner for
+              the express purpose of meeting the Client's needs in respect of
+              provision of the Company's stated services, in accordance with and
+              subject to, prevailing law of in. Any use of the above terminology
+              or other words in the singular, plural, capitalization and/or
+              he/she or they, are taken as interchangeable and therefore as
+              referring to same., key: 1a0a8349
+            label: Text
+            name: 1a0a8349
+            widget: text
+          - hint: 'Original text: Cookies, key: -64062591'
+            label: Text
+            name: '-64062591'
+            widget: string
+          - hint: >-
+              Original text: We employ the use of cookies. By accessing , key:
+              -374e135
+            label: Text
+            name: '-374e135'
+            widget: string
+          - hint: 'Original text: www.ngold.in, key: -54c05c44'
+            label: Text
+            name: '-54c05c44'
+            widget: string
+          - hint: >-
+              Original text: , you agreed to use cookies in agreement with the N
+              Gold's Privacy Policy., key: -22ae040a
+            label: Text
+            name: '-22ae040a'
+            widget: string
+          - hint: >-
+              Original text: Most interactive websites use cookies to let us
+              retrieve the user's details for each visit. Cookies are used by
+              our website to enable the functionality of certain areas to make
+              it easier for people visiting our website. Some of our
+              affiliate/advertising partners may also use cookies., key:
+              -22993110
+            label: Text
+            name: '-22993110'
+            widget: text
+          - hint: 'Original text: License, key: 6d291c21'
+            label: Text
+            name: 6d291c21
+            widget: string
+          - hint: >-
+              Original text: Unless otherwise stated, N Gold and/or its
+              licensors own the intellectual property rights for all material on
+              , key: 787ca4f
+            label: Text
+            name: 787ca4f
+            widget: text
+          - hint: >-
+              Original text: . All intellectual property rights are reserved.
+              You may access this from , key: 4c9f4a41
+            label: Text
+            name: 4c9f4a41
+            widget: string
+          - hint: >-
+              Original text:  for your own personal use subjected to
+              restrictions set in these terms and conditions., key: 9a9560c
+            label: Text
+            name: 9a9560c
+            widget: string
+          - hint: 'Original text: You must not:, key: -2560763'
+            label: Text
+            name: '-2560763'
+            widget: string
+          - hint: 'Original text: Republish material from , key: d98e2c1'
+            label: Text
+            name: d98e2c1
+            widget: string
+          - hint: >-
+              Original text: Sell, rent or sub-license material from , key:
+              -66fc69fb
+            label: Text
+            name: '-66fc69fb'
+            widget: string
+          - hint: >-
+              Original text: Reproduce, duplicate or copy material from , key:
+              624e5fe1
+            label: Text
+            name: 624e5fe1
+            widget: string
+          - hint: 'Original text: Redistribute content from , key: -266ddb5d'
+            label: Text
+            name: '-266ddb5d'
+            widget: string
+          - hint: >-
+              Original text: This Agreement shall begin on the date hereof. Our
+              Terms and Conditions were created with the help of the Free Terms
+              and Conditions Generator., key: 50e586ec
+            label: Text
+            name: 50e586ec
+            widget: text
+          - hint: >-
+              Original text: Parts of this website offer an opportunity for
+              users to post and exchange opinions and information in certain
+              areas of the website. N Gold does not filter, edit, publish or
+              review Comments prior to their presence on the website. Comments
+              do not reflect the views and opinions of N Gold, its agents and/or
+              affiliates. Comments reflect the views and opinions of the person
+              who post their views and opinions. To the extent permitted by
+              applicable laws, N Gold shall not be liable for the Comments or
+              for any liability, damages or expenses caused and/or suffered as a
+              result of any use of and/or posting of and/or appearance of the
+              Comments on this website., key: -568536dd
+            label: Text
+            name: '-568536dd'
+            widget: text
+          - hint: >-
+              Original text: N Gold reserves the right to monitor all Comments
+              and to remove any Comments which can be considered inappropriate,
+              offensive or causes breach of these Terms and Conditions., key:
+              -1da6ee71
+            label: Text
+            name: '-1da6ee71'
+            widget: text
+          - hint: 'Original text: You warrant and represent that:, key: 5f6aa20e'
+            label: Text
+            name: 5f6aa20e
+            widget: string
+          - hint: >-
+              Original text: You are entitled to post the Comments on our
+              website and have all necessary licenses and consents to do so;,
+              key: -bd5fb4a
+            label: Text
+            name: '-bd5fb4a'
+            widget: text
+          - hint: >-
+              Original text: The Comments do not invade any intellectual
+              property right, including without limitation copyright, patent or
+              trademark of any third party;, key: -563eef38
+            label: Text
+            name: '-563eef38'
+            widget: text
+          - hint: >-
+              Original text: The Comments do not contain any defamatory,
+              libelous, offensive, indecent or otherwise unlawful material which
+              is an invasion of privacy, key: -31509d7b
+            label: Text
+            name: '-31509d7b'
+            widget: text
+          - hint: >-
+              Original text: The Comments will not be used to solicit or promote
+              business or custom or present commercial activities or unlawful
+              activity., key: 2681e3f2
+            label: Text
+            name: 2681e3f2
+            widget: text
+          - hint: >-
+              Original text: You hereby grant N Gold a non-exclusive license to
+              use, reproduce, edit and authorize others to use, reproduce and
+              edit any of your Comments in any and all forms, formats or media.,
+              key: 670139e7
+            label: Text
+            name: '670139e7'
+            widget: text
+          - hint: 'Original text: Hyperlinking to our Content, key: -79ffb7dc'
+            label: Text
+            name: '-79ffb7dc'
+            widget: string
+          - hint: >-
+              Original text: The following organizations may link to our Website
+              without prior written approval:, key: 4584dbcf
+            label: Text
+            name: 4584dbcf
+            widget: string
+          - hint: 'Original text: Government agencies;, key: 163ca5e9'
+            label: Text
+            name: 163ca5e9
+            widget: string
+          - hint: 'Original text: Search engines;, key: -2d4370be'
+            label: Text
+            name: '-2d4370be'
+            widget: string
+          - hint: 'Original text: News organizations;, key: f209f68'
+            label: Text
+            name: f209f68
+            widget: string
+          - hint: >-
+              Original text: Online directory distributors may link to our
+              Website in the same manner as they hyperlink to the Websites of
+              other listed businesses; and, key: -23f5eac6
+            label: Text
+            name: '-23f5eac6'
+            widget: text
+          - hint: >-
+              Original text: System wide Accredited Businesses except soliciting
+              non-profit organizations, charity shopping malls, and charity
+              fundraising groups which may not hyperlink to our Web site., key:
+              -e8cb609
+            label: Text
+            name: '-e8cb609'
+            widget: text
+          - hint: >-
+              Original text: These organizations may link to our home page, to
+              publications or to other Website information so long as the link:
+              (a) is not in any way deceptive; (b) does not falsely imply
+              sponsorship, endorsement or approval of the linking party and its
+              products and/or services; and (c) fits within the context of the
+              linking party's site., key: -7c651eda
+            label: Text
+            name: '-7c651eda'
+            widget: text
+          - hint: >-
+              Original text: We may consider and approve other link requests
+              from the following types of organizations:, key: -fe5fc9c
+            label: Text
+            name: '-fe5fc9c'
+            widget: string
+          - hint: >-
+              Original text: commonly-known consumer and/or business information
+              sources;, key: -bacc4b6
+            label: Text
+            name: '-bacc4b6'
+            widget: string
+          - hint: 'Original text: dot.com community sites;, key: -593257f6'
+            label: Text
+            name: '-593257f6'
+            widget: string
+          - hint: >-
+              Original text: associations or other groups representing
+              charities;, key: 1184adbe
+            label: Text
+            name: 1184adbe
+            widget: string
+          - hint: 'Original text: online directory distributors;, key: 12c0e10f'
+            label: Text
+            name: 12c0e10f
+            widget: string
+          - hint: 'Original text: internet portals;, key: 7e73dd93'
+            label: Text
+            name: 7e73dd93
+            widget: string
+          - hint: >-
+              Original text: accounting, law and consulting firms; and, key:
+              a4448d7
+            label: Text
+            name: a4448d7
+            widget: string
+          - hint: >-
+              Original text: educational institutions and trade associations.,
+              key: 6c65d39f
+            label: Text
+            name: 6c65d39f
+            widget: string
+          - hint: >-
+              Original text: We will approve link requests from these
+              organizations if we decide that: (a) the link would not make us
+              look unfavorably to ourselves or to our accredited businesses; (b)
+              the organization does not have any negative records with us; (c)
+              the benefit to us from the visibility of the hyperlink compensates
+              the absence of N Gold; and (d) the link is in the context of
+              general resource information., key: -87b20d9
+            label: Text
+            name: '-87b20d9'
+            widget: text
+          - hint: >-
+              Original text: These organizations may link to our home page so
+              long as the link: (a) is not in any way deceptive; (b) does not
+              falsely imply sponsorship, endorsement or approval of the linking
+              party and its products or services; and (c) fits within the
+              context of the linking party's site., key: -3293289f
+            label: Text
+            name: '-3293289f'
+            widget: text
+          - hint: >-
+              Original text: If you are one of the organizations listed in
+              paragraph 2 above and are interested in linking to our website,
+              you must inform us by sending an e-mail to N Gold. Please include
+              your name, your organization name, contact information as well as
+              the URL of your site, a list of any URLs from which you intend to
+              link to our Website, and a list of the URLs on our site to which
+              you would like to link. Wait 2-3 weeks for a response., key:
+              -12480acb
+            label: Text
+            name: '-12480acb'
+            widget: text
+          - hint: >-
+              Original text: Approved organizations may hyperlink to our Website
+              as follows:, key: -3cb2501a
+            label: Text
+            name: '-3cb2501a'
+            widget: string
+          - hint: 'Original text: By use of our corporate name; or, key: -73b55b37'
+            label: Text
+            name: '-73b55b37'
+            widget: string
+          - hint: >-
+              Original text: By use of the uniform resource locator being linked
+              to; or, key: -37dcbfd1
+            label: Text
+            name: '-37dcbfd1'
+            widget: string
+          - hint: >-
+              Original text: By use of any other description of our Website
+              being linked to that makes sense within the context and format of
+              content on the linking party's site., key: -388b917e
+            label: Text
+            name: '-388b917e'
+            widget: text
+          - hint: >-
+              Original text: No use of N Gold's logo or other artwork will be
+              allowed for linking absent a trademark license agreement., key:
+              335f318d
+            label: Text
+            name: 335f318d
+            widget: text
+          - hint: 'Original text: iFrames, key: 3055be6f'
+            label: Text
+            name: 3055be6f
+            widget: string
+          - hint: >-
+              Original text: Without prior approval and written permission, you
+              may not create frames around our Webpages that alter in any way
+              the visual presentation or appearance of our Website., key:
+              -18094b4d
+            label: Text
+            name: '-18094b4d'
+            widget: text
+          - hint: 'Original text: Content Liability, key: -5f90da1a'
+            label: Text
+            name: '-5f90da1a'
+            widget: string
+          - hint: >-
+              Original text: We shall not be hold responsible for any content
+              that appears on your Website. You agree to protect and defend us
+              against all claims that is rising on your Website. No link(s)
+              should appear on any Website that may be interpreted as libelous,
+              obscene or criminal, or which infringes, otherwise violates, or
+              advocates the infringement or other violation of, any third party
+              rights., key: -1d314987
+            label: Text
+            name: '-1d314987'
+            widget: text
+          - hint: 'Original text: Reservation of Rights, key: 2fbc40ec'
+            label: Text
+            name: 2fbc40ec
+            widget: string
+          - hint: >-
+              Original text: We reserve the right to request that you remove all
+              links or any particular link to our Website. You approve to
+              immediately remove all links to our Website upon request. We also
+              reserve the right to amen these terms and conditions and it's
+              linking policy at any time. By continuously linking to our
+              Website, you agree to be bound to and follow these linking terms
+              and conditions., key: -5e6f873e
+            label: Text
+            name: '-5e6f873e'
+            widget: text
+          - hint: 'Original text: Removal of links from our website, key: -6dbc6d13'
+            label: Text
+            name: '-6dbc6d13'
+            widget: string
+          - hint: >-
+              Original text: If you find any link on our Website that is
+              offensive for any reason, you are free to contact and inform us
+              any moment. We will consider requests to remove links but we are
+              not obligated to or so or to respond to you directly., key:
+              73ecab03
+            label: Text
+            name: 73ecab03
+            widget: text
+          - hint: >-
+              Original text: We do not ensure that the information on this
+              website is correct, we do not warrant its completeness or
+              accuracy; nor do we promise to ensure that the website remains
+              available or that the material on the website is kept up to date.,
+              key: -27651a54
+            label: Text
+            name: '-27651a54'
+            widget: text
+          - hint: 'Original text: Disclaimer, key: -6f68ae45'
+            label: Text
+            name: '-6f68ae45'
+            widget: string
+          - hint: >-
+              Original text: To the maximum extent permitted by applicable law,
+              we exclude all representations, warranties and conditions relating
+              to our website and the use of this website. Nothing in this
+              disclaimer will:, key: -459a13c4
+            label: Text
+            name: '-459a13c4'
+            widget: text
+          - hint: >-
+              Original text: limit or exclude our or your liability for death or
+              personal injury;, key: -73305957
+            label: Text
+            name: '-73305957'
+            widget: string
+          - hint: >-
+              Original text: limit or exclude our or your liability for fraud or
+              fraudulent misrepresentation;, key: -2f54adce
+            label: Text
+            name: '-2f54adce'
+            widget: string
+          - hint: >-
+              Original text: limit any of our or your liabilities in any way
+              that is not permitted under applicable law; or, key: 137efffa
+            label: Text
+            name: 137efffa
+            widget: text
+          - hint: >-
+              Original text: exclude any of our or your liabilities that may not
+              be excluded under applicable law., key: 7e578233
+            label: Text
+            name: '7e578233'
+            widget: string
+          - hint: >-
+              Original text: The limitations and prohibitions of liability set
+              in this Section and elsewhere in this disclaimer: (a) are subject
+              to the preceding paragraph; and (b) govern all liabilities arising
+              under the disclaimer, including liabilities arising in contract,
+              in tort and for breach of statutory duty., key: -2b8fba13
+            label: Text
+            name: '-2b8fba13'
+            widget: text
+          - hint: "Original text: As long as the website and the information and services on the website are provided free of charge, we will not be liable for any loss or damage\_of\_any\_nature., key: -4f518f3f"
+            label: Text
+            name: '-4f518f3f'
+            widget: text
+          - hint: 'Original text: Privacy Policy, key: -3fbde6f6'
+            label: Text
+            name: '-3fbde6f6'
+            widget: string
+          - hint: >-
+              Original text: At www.ngold.in, accessible from
+              https://n-gold.webflow.io/, one of our main priorities is the
+              privacy of our visitors. This Privacy Policy document contains
+              types of information that is collected and recorded by
+              www.ngold.in and how we use it., key: 3436e010
+            label: Text
+            name: '3436e010'
+            widget: text
+          - hint: >-
+              Original text: If you have additional questions or require more
+              information about our Privacy Policy, do not hesitate to contact
+              us., key: -117ca984
+            label: Text
+            name: '-117ca984'
+            widget: text
+          - hint: >-
+              Original text: This Privacy Policy applies only to our online
+              activities and is valid for visitors to our website with regards
+              to the information that they shared and/or collect in
+              www.ngold.in. This policy is not applicable to any information
+              collected offline or via channels other than this website., key:
+              2ae0724e
+            label: Text
+            name: 2ae0724e
+            widget: text
+          - hint: 'Original text: Consent, key: -6410a806'
+            label: Text
+            name: '-6410a806'
+            widget: string
+          - hint: >-
+              Original text: By using our website, you hereby consent to our
+              Privacy Policy and agree to its terms., key: -60d800fe
+            label: Text
+            name: '-60d800fe'
+            widget: string
+          - hint: 'Original text: Information we collect, key: -7639c694'
+            label: Text
+            name: '-7639c694'
+            widget: string
+          - hint: >-
+              Original text: The personal information that you are asked to
+              provide, and the reasons why you are asked to provide it, will be
+              made clear to you at the point we ask you to provide your personal
+              information., key: -66c49400
+            label: Text
+            name: '-66c49400'
+            widget: text
+          - hint: >-
+              Original text: If you contact us directly, we may receive
+              additional information about you such as your name, email address,
+              phone number, the contents of the message and/or attachments you
+              may send us, and any other information you may choose to provide.,
+              key: -38fb2d0c
+            label: Text
+            name: '-38fb2d0c'
+            widget: text
+          - hint: >-
+              Original text: When you register for an Account, we may ask for
+              your contact information, including items such as name, company
+              name, address, email address, and telephone number., key: 429990f0
+            label: Text
+            name: 429990f0
+            widget: text
+          - hint: 'Original text: How we use your information, key: 553dec5a'
+            label: Text
+            name: 553dec5a
+            widget: string
+          - hint: >-
+              Original text: We use the information we collect in various ways,
+              including to:, key: -7b658d4a
+            label: Text
+            name: '-7b658d4a'
+            widget: string
+          - hint: >-
+              Original text: Provide, operate, and maintain our website, key:
+              3b502c3e
+            label: Text
+            name: 3b502c3e
+            widget: string
+          - hint: >-
+              Original text: Improve, personalize, and expand our website, key:
+              33bb7366
+            label: Text
+            name: 33bb7366
+            widget: string
+          - hint: >-
+              Original text: Understand and analyze how you use our website,
+              key: 1e2ab0be
+            label: Text
+            name: 1e2ab0be
+            widget: string
+          - hint: >-
+              Original text: Develop new products, services, features, and
+              functionality, key: 78c369a4
+            label: Text
+            name: 78c369a4
+            widget: string
+          - hint: >-
+              Original text: Communicate with you, either directly or through
+              one of our partners, including for customer service, to provide
+              you with updates and other information relating to the website,
+              and for marketing and promotional purposes, key: -5bdaf3c1
+            label: Text
+            name: '-5bdaf3c1'
+            widget: text
+          - hint: 'Original text: Send you emails, key: -1d799910'
+            label: Text
+            name: '-1d799910'
+            widget: string
+          - hint: 'Original text: Find and prevent fraud, key: -54dfbaf4'
+            label: Text
+            name: '-54dfbaf4'
+            widget: string
+          - hint: 'Original text: Log Files, key: -6dc3e1a5'
+            label: Text
+            name: '-6dc3e1a5'
+            widget: string
+          - hint: >-
+              Original text: www.ngold.in follows a standard procedure of using
+              log files. These files log visitors when they visit websites. All
+              hosting companies do this and a part of hosting services'
+              analytics. The information collected by log files include internet
+              protocol (IP) addresses, browser type, Internet Service Provider
+              (ISP), date and time stamp, referring/exit pages, and possibly the
+              number of clicks. These are not linked to any information that is
+              personally identifiable. The purpose of the information is for
+              analyzing trends, administering the site, tracking users' movement
+              on the website, and gathering demographic information., key:
+              -73febe36
+            label: Text
+            name: '-73febe36'
+            widget: text
+          - hint: >-
+              Original text: Advertising Partners Privacy Policies, key:
+              -7533dc3f
+            label: Text
+            name: '-7533dc3f'
+            widget: string
+          - hint: >-
+              Original text: You may consult this list to find the Privacy
+              Policy for each of the advertising partners of www.ngold.in., key:
+              4277181d
+            label: Text
+            name: 4277181d
+            widget: text
+          - hint: >-
+              Original text: Third-party ad servers or ad networks uses
+              technologies like cookies, JavaScript, or Web Beacons that are
+              used in their respective advertisements and links that appear on
+              www.ngold.in, which are sent directly to users' browser. They
+              automatically receive your IP address when this occurs. These
+              technologies are used to measure the effectiveness of their
+              advertising campaigns and/or to personalize the advertising
+              content that you see on websites that you visit., key: 2b12f24
+            label: Text
+            name: 2b12f24
+            widget: text
+          - hint: >-
+              Original text: Note that www.ngold.in has no access to or control
+              over these cookies that are used by third-party advertisers., key:
+              -32e55bb2
+            label: Text
+            name: '-32e55bb2'
+            widget: text
+          - hint: 'Original text: Third Party Privacy Policies, key: -7eb1e3c5'
+            label: Text
+            name: '-7eb1e3c5'
+            widget: string
+          - hint: >-
+              Original text: www.ngold.in's Privacy Policy does not apply to
+              other advertisers or websites. Thus, we are advising you to
+              consult the respective Privacy Policies of these third-party ad
+              servers for more detailed information. It may include their
+              practices and instructions about how to opt-out of certain
+              options., key: 22198614
+            label: Text
+            name: '22198614'
+            widget: text
+          - hint: >-
+              Original text: You can choose to disable cookies through your
+              individual browser options. To know more detailed information
+              about cookie management with specific web browsers, it can be
+              found at the browsers' respective websites., key: 47f79609
+            label: Text
+            name: 47f79609
+            widget: text
+          - hint: >-
+              Original text: CCPA Privacy Rights (Do Not Sell My Personal
+              Information), key: -4d162e05
+            label: Text
+            name: '-4d162e05'
+            widget: string
+          - hint: >-
+              Original text: Under the CCPA, among other rights, California
+              consumers have the right to:, key: -40e7a3dc
+            label: Text
+            name: '-40e7a3dc'
+            widget: string
+          - hint: >-
+              Original text: Request that a business that collects a consumer's
+              personal data disclose the categories and specific pieces of
+              personal data that a business has collected about consumers., key:
+              -563a134b
+            label: Text
+            name: '-563a134b'
+            widget: text
+          - hint: >-
+              Original text: Request that a business delete any personal data
+              about the consumer that a business has collected., key: 7690b9d5
+            label: Text
+            name: 7690b9d5
+            widget: text
+          - hint: >-
+              Original text: Request that a business that sells a consumer's
+              personal data, not sell the consumer's personal data., key:
+              2a029550
+            label: Text
+            name: 2a029550
+            widget: text
+          - hint: >-
+              Original text: If you make a request, we have one month to respond
+              to you. If you would like to exercise any of these rights, please
+              contact us., key: -35f2f74c
+            label: Text
+            name: '-35f2f74c'
+            widget: text
+          - hint: 'Original text: GDPR Data Protection Rights, key: 768783c9'
+            label: Text
+            name: 768783c9
+            widget: string
+          - hint: >-
+              Original text: We would like to make sure you are fully aware of
+              all of your data protection rights. Every user is entitled to the
+              following:, key: -2858e7d9
+            label: Text
+            name: '-2858e7d9'
+            widget: text
+          - hint: >-
+              Original text: The right to access – You have the right to request
+              copies of your personal data. We may charge you a small fee for
+              this service., key: -1af41bc
+            label: Text
+            name: '-1af41bc'
+            widget: text
+          - hint: >-
+              Original text: The right to rectification – You have the right to
+              request that we correct any information you believe is inaccurate.
+              You also have the right to request that we complete the
+              information you believe is incomplete., key: -3460a3f
+            label: Text
+            name: '-3460a3f'
+            widget: text
+          - hint: >-
+              Original text: The right to erasure – You have the right to
+              request that we erase your personal data, under certain
+              conditions., key: b835d4a
+            label: Text
+            name: b835d4a
+            widget: text
+          - hint: >-
+              Original text: The right to restrict processing – You have the
+              right to request that we restrict the processing of your personal
+              data, under certain conditions., key: -6c0e6423
+            label: Text
+            name: '-6c0e6423'
+            widget: text
+          - hint: >-
+              Original text: The right to object to processing – You have the
+              right to object to our processing of your personal data, under
+              certain conditions., key: -43def154
+            label: Text
+            name: '-43def154'
+            widget: text
+          - hint: >-
+              Original text: The right to data portability – You have the right
+              to request that we transfer the data that we have collected to
+              another organization, or directly to you, under certain
+              conditions., key: 137acb63
+            label: Text
+            name: 137acb63
+            widget: text
+          - hint: 'Original text: Children''s Information, key: -3b8a7409'
+            label: Text
+            name: '-3b8a7409'
+            widget: string
+          - hint: >-
+              Original text: Another part of our priority is adding protection
+              for children while using the internet. We encourage parents and
+              guardians to observe, participate in, and/or monitor and guide
+              their online activity., key: 503b928f
+            label: Text
+            name: 503b928f
+            widget: text
+          - hint: >-
+              Original text: www.ngold.in does not knowingly collect any
+              Personal Identifiable Information from children under the age of
+              13. If you think that your child provided this kind of information
+              on our website, we strongly encourage you to contact us
+              immediately and we will do our best efforts to promptly remove
+              such information from our records., key: -37644967
+            label: Text
+            name: '-37644967'
+            widget: text
+          - hint: 'Original text: Changes to This Privacy Policy, key: 5247bfa4'
+            label: Text
+            name: 5247bfa4
+            widget: string
+          - hint: >-
+              Original text: We may update our Privacy Policy from time to time.
+              Thus, we advise you to review this page periodically for any
+              changes. We will notify you of any changes by posting the new
+              Privacy Policy on this page. These changes are effective
+              immediately, after they are posted on this page., key: -1de455cb
+            label: Text
+            name: '-1de455cb'
+            widget: text
+          - hint: >-
+              Original text: Our Privacy Policy was created with the help of the
+              , key: -26ab9d4f
+            label: Text
+            name: '-26ab9d4f'
+            widget: string
+          - hint: 'Original text: Privacy Policy Generator, key: de0b31d'
+            label: Text
+            name: de0b31d
+            widget: string
+          - hint: >-
+              Original text: If you have any questions or suggestions about our
+              Privacy Policy, do not hesitate to contact us., key: 3db67330
+            label: Text
+            name: 3db67330
+            widget: text
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: #benifits-part, key: -2d2c2e63'
+            label: Link
+            name: '-2d2c2e63'
+            widget: string
+          - hint: 'Original link: #features, key: 34081160'
+            label: Link
+            name: '34081160'
+            widget: string
+          - hint: 'Original link: #abt-sec, key: -1346a58c'
+            label: Link
+            name: '-1346a58c'
+            widget: string
+          - hint: 'Original link: #faq-sec, key: -ca69c69'
+            label: Link
+            name: '-ca69c69'
+            widget: string
+          - hint: 'Original link: #contact, key: 6c80469d'
+            label: Link
+            name: 6c80469d
+            widget: string
+          - hint: 'Original link: /terms-and-conditions/, key: -237f3f94'
+            label: Link
+            name: '-237f3f94'
+            widget: string
+          - hint: 'Original link: /policy/, key: -561c1d2'
+            label: Link
+            name: '-561c1d2'
+            widget: string
+          - hint: 'Original link: https://www.emildasolutions.com/, key: 6184bf70'
+            label: Link
+            name: 6184bf70
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: >-
+              Original link:
+              https://www.termsfeed.com/privacy-policy-generator/, key: 77013115
+            label: Link
+            name: '77013115'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '-27b233f3'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6e81558b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4af34c0a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5d82fa92'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: bdf0ffb
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-17ab61bb'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 25bcd098
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 4ae49626
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1b16efbb'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7d8bdbae'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-34db84b0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a8f7fc5
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6a569004
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 49374c2
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
